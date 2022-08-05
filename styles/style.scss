@@ -1,5 +1,9 @@
 @use "utilities/global" as *;
 
+//TODO: attribution
+//TODO: SVG titles
+//TODO: reorganize grid__section-white class structure in HTML and CSS
+
 @include setup;
 
 body {
@@ -15,6 +19,10 @@ svg {
 
 a {
   text-decoration: none;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
 }
 
 .header {
@@ -25,6 +33,15 @@ a {
   height: rem(538px);
   padding-top: rem(32px);
   padding-inline: rem(24px);
+  @media (min-width: $breakpoint) {
+    background-image: url("../images/desktop/image-header.jpg");
+    padding-top: rem(34px);
+    padding-inline: rem(40px);
+    height: rem(800px);
+  }
+  a:any-link {
+    color: color(white);
+  }
 }
 
 .header__top {
@@ -33,10 +50,67 @@ a {
   align-items: center;
   margin-bottom: rem(88px);
   color: white;
+  @media (min-width: $breakpoint) {
+    margin-bottom: rem(105px);
+  }
+}
+
+.header__logo {
+  width: rem(124px);
+  @media (min-width: $breakpoint) {
+    width: rem(170px);
+  }
+}
+
+.header__navigation {
+  display: none;
+  @media (min-width: $breakpoint) {
+    display: flex;
+    width: rem(467px);
+    justify-content: space-between;
+    align-items: center;
+    @include setFont(rem(18px), 25px, 600);
+    letter-spacing: -0.128571px;
+  }
 }
 
 .header__hamburger {
   cursor: pointer;
+  @media (min-width: $breakpoint) {
+    display: none;
+  }
+}
+
+.navigation__contact-btn {
+  font-family: $font-fraunces;
+  @include setFont(rem(15px), 25px, 700);
+  letter-spacing: -0.107143px;
+  text-transform: uppercase;
+  color: color(very-dark-desaturated-blue);
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  width: em(140px, 15px);
+  height: em(56px, 15px);
+  position: relative;
+  z-index: 2;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: color(white);
+    border-radius: 28px;
+    z-index: -1;
+  }
+  &:hover,
+  &:focus {
+    color: color(white);
+    outline: none;
+
+    &::before {
+      opacity: 0.25;
+    }
+  }
 }
 
 .header__heading {
@@ -47,15 +121,62 @@ a {
   text-align: center;
   color: color(white);
   margin-bottom: em(52px, 40px);
+  @media (min-width: $breakpoint) {
+    @include setFont(rem(56px), 69px);
+    letter-spacing: 8.75px;
+    margin-bottom: em(96.54px, 56px);
+  }
 }
 
 .header__arrow-down {
   margin-inline: auto;
 }
 
-.grid__section-white {
+.grid {
+  @media (min-width: $breakpoint) {
+    display: grid;
+    grid-template: repeat(3, 1fr) / 1fr 1fr;
+    grid-template-areas:
+      "transform-text transform-img"
+      "standout-img standout-text" "graphic-design photography";
+    margin-inline: auto;
+  }
+}
+
+%grid__section-white {
   padding: rem(64px) rem(24px);
   text-align: center;
+  @media (min-width: $breakpoint) {
+    text-align: left;
+  }
+}
+
+.section-white--transform {
+  @extend %grid__section-white;
+  @media (min-width: $breakpoint) {
+    padding-left: rem(165px);
+    padding-right: rem(110px);
+    align-self: center;
+    grid-area: transform-text;
+  }
+}
+
+.grid__transform-img {
+  grid-area: transform-img;
+}
+
+.section-white--standout {
+  @extend %grid__section-white;
+  @media (min-width: $breakpoint) {
+    padding-right: rem(165px);
+    padding-left: rem(110px);
+    align-self: center;
+    grid-area: standout-text;
+  }
+}
+
+.grid__standout-img {
+  grid-area: standout-img;
 }
 
 .section-white__heading {
@@ -64,6 +185,11 @@ a {
   letter-spacing: -0.228571px;
   color: color(very-dark-desaturated-blue);
   margin-bottom: em(24px, 32px);
+  @media (min-width: $breakpoint) {
+    @include setFont(rem(40px), 49px);
+    letter-spacing: -0.285714px;
+    margin-bottom: em(33px, 40px);
+  }
 }
 
 .section-white__paragraph {
@@ -71,6 +197,9 @@ a {
   letter-spacing: -0.128571px;
   color: color(dark-grayish-blue);
   margin-bottom: em(32px, 18px);
+  @media (min-width: $breakpoint) {
+    margin-bottom: em(40px, 18px);
+  }
 }
 
 .section-white__learn-more {
@@ -123,31 +252,57 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  text-align: center;
   padding-inline: rem(24px);
   padding-bottom: rem(59px);
+  @media (min-width: $breakpoint) {
+    padding-inline: rem(190px);
+    padding-bottom: rem(59px);
+  }
 }
 
 .color--green {
   background-image: url("../images/mobile/image-graphic-design.jpg");
   color: color(dark-desaturated-cyan);
+  grid-area: graphic-design;
+  @media (min-width: $breakpoint) {
+    background-image: url("../images/desktop/image-graphic-design.jpg");
+  }
 }
 
 .color--blue {
   background-image: url("../images/mobile/image-photography.jpg");
   color: color(dark-blue);
+  grid-area: photography;
+  @media (min-width: $breakpoint) {
+    background-image: url("../images/desktop/image-photography.jpg");
+  }
 }
 
 .section-color__heading {
   font-family: $font-fraunces;
   @include setFont(rem(27px), 35px, 900);
   letter-spacing: -0.2px;
-  text-align: center;
   margin-bottom: em(27px, 27px);
+  @media (min-width: $breakpoint) {
+    @include setFont(rem(28px), 35px);
+    margin-bottom: em(27px, 28px);
+  }
+}
+
+.section-color__paragraph {
+  @include setFont(rem(16px), 27px, 600);
+  letter-spacing: -0.114286px;
 }
 
 .section-testimonials {
   padding: rem(64px) rem(24px) rem(86px);
   text-align: center;
+  @media (min-width: $breakpoint) {
+    padding-block: rem(160px);
+    padding-inline: 0;
+    width: 100%;
+  }
 }
 
 .testimonials__heading {
@@ -156,12 +311,23 @@ a {
   letter-spacing: 4px;
   color: color(grayish-blue);
   margin-bottom: em(64px, 16px);
+  @media (min-width: $breakpoint) {
+    @include setFont(rem(20px), 25px);
+    letter-spacing: 5px;
+    margin-bottom: em(81px, 20px);
+  }
 }
 
 .testimonials__content {
   display: flex;
   flex-direction: column;
   gap: rem(64px);
+  @media (min-width: $breakpoint) {
+    margin: 0 auto;
+    flex-direction: row;
+    gap: rem(30px);
+    max-width: rem(1110px);
+  }
 }
 
 .testimonial__avatar {
@@ -170,6 +336,9 @@ a {
   border-radius: 100%;
   margin-inline: auto;
   margin-bottom: rem(32px);
+  @media (min-width: $breakpoint) {
+    margin-bottom: rem(58px);
+  }
 }
 
 .testimonial__quote {
@@ -177,6 +346,10 @@ a {
   letter-spacing: -0.128571px;
   margin-bottom: em(32px, 18px);
   color: color(very-dark-grayish-blue);
+  @media (min-width: $breakpoint) {
+    width: rem(350px);
+    margin-bottom: em(69px, 18px);
+  }
 }
 
 .attribution__name {
@@ -196,6 +369,9 @@ a {
 .gallery {
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr;
+  @media (min-width: $breakpoint) {
+    grid-template: none / repeat(4, 1fr);
+  }
 }
 
 .footer {
@@ -208,6 +384,9 @@ a {
   a:hover,
   a:focus {
     color: color(white);
+  }
+  @media (min-width: $breakpoint) {
+    padding: rem(72px) rem(570px);
   }
 }
 
@@ -224,6 +403,9 @@ a {
   @include setFont(rem(18px), 25px, 600);
   letter-spacing: -0.128571px;
   margin-bottom: rem(88px);
+  @media (min-width: $breakpoint) {
+    max-width: rem(300px);
+  }
 }
 
 .footer__social-media {
