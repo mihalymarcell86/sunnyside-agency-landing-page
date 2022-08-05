@@ -1,3 +1,247 @@
 @use "utilities/global" as *;
 
 @include setup;
+
+body {
+  background-color: hsl(34, 100%, 99%);
+  font-family: $font-barlow;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  background-image: url("../images/mobile/image-header.jpg");
+  background-size: cover;
+  background-position: center bottom;
+  width: 100%;
+  height: rem(538px);
+  padding-top: rem(32px);
+  padding-inline: rem(24px);
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: rem(88px);
+  color: white;
+}
+
+.header__hamburger {
+  cursor: pointer;
+}
+
+.header__heading {
+  font-family: $font-fraunces;
+  @include setFont(rem(40px), 49px, 900);
+  letter-spacing: 6.25px;
+  text-transform: uppercase;
+  text-align: center;
+  color: color(white);
+  margin-bottom: em(52px, 40px);
+}
+
+.header__arrow-down {
+  margin-inline: auto;
+}
+
+.grid__section-white {
+  padding: rem(64px) rem(24px);
+  text-align: center;
+}
+
+.section-white__heading {
+  font-family: $font-fraunces;
+  @include setFont(rem(32px), 39px, 900);
+  letter-spacing: -0.228571px;
+  color: color(very-dark-desaturated-blue);
+  margin-bottom: em(24px, 32px);
+}
+
+.section-white__paragraph {
+  @include setFont(rem(18px), 30px, 600);
+  letter-spacing: -0.128571px;
+  color: color(dark-grayish-blue);
+  margin-bottom: em(32px, 18px);
+}
+
+.section-white__learn-more {
+  font-family: $font-fraunces;
+  @include setFont(rem(15px), 25px, 900);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  &:any-link {
+    color: color(very-dark-desaturated-blue);
+  }
+}
+
+%underline {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: rem(137px);
+    height: rem(10px);
+    bottom: rem(-3px);
+    left: rem(-9.5px);
+    opacity: 0.25;
+    border-radius: 28px;
+    z-index: -1;
+  }
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+.underline--yellow {
+  @extend %underline;
+  &:after {
+    background-color: color(yellow);
+  }
+}
+
+.underline--red {
+  @extend %underline;
+  &:after {
+    background-color: color(soft-red);
+  }
+}
+
+.grid__section-color {
+  width: 100%;
+  height: rem(600px);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-inline: rem(24px);
+  padding-bottom: rem(59px);
+}
+
+.color--green {
+  background-image: url("../images/mobile/image-graphic-design.jpg");
+  color: color(dark-desaturated-cyan);
+}
+
+.color--blue {
+  background-image: url("../images/mobile/image-photography.jpg");
+  color: color(dark-blue);
+}
+
+.section-color__heading {
+  font-family: $font-fraunces;
+  @include setFont(rem(27px), 35px, 900);
+  letter-spacing: -0.2px;
+  text-align: center;
+  margin-bottom: em(27px, 27px);
+}
+
+.section-testimonials {
+  padding: rem(64px) rem(24px) rem(86px);
+  text-align: center;
+}
+
+.testimonials__heading {
+  font-family: $font-fraunces;
+  @include setFont(rem(16px), 20px, 900);
+  letter-spacing: 4px;
+  color: color(grayish-blue);
+  margin-bottom: em(64px, 16px);
+}
+
+.testimonials__content {
+  display: flex;
+  flex-direction: column;
+  gap: rem(64px);
+}
+
+.testimonial__avatar {
+  width: rem(72px);
+  height: rem(72px);
+  border-radius: 100%;
+  margin-inline: auto;
+  margin-bottom: rem(32px);
+}
+
+.testimonial__quote {
+  @include setFont(rem(18px), 32px, 600);
+  letter-spacing: -0.128571px;
+  margin-bottom: em(32px, 18px);
+  color: color(very-dark-grayish-blue);
+}
+
+.attribution__name {
+  font-family: $font-fraunces;
+  @include setFont(rem(18px), 22px, 900);
+  letter-spacing: -0.128571px;
+  color: color(very-dark-desaturated-blue);
+  margin-bottom: em(9px, 18px);
+}
+
+.attribution__job-title {
+  @include setFont(rem(14px), 25px, 600);
+  letter-spacing: -0.1px;
+  color: color(grayish-blue);
+}
+
+.gallery {
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.footer {
+  background-color: hsl(168, 44%, 70%);
+  color: hsl(168, 46%, 31%);
+  padding: rem(64px) rem(39px) rem(80px);
+  a:any-link {
+    color: color(dark-moderate-cyan);
+  }
+  a:hover,
+  a:focus {
+    color: color(white);
+  }
+}
+
+.footer__logo {
+  width: rem(170px);
+  margin-inline: auto;
+  margin-bottom: rem(40px);
+}
+
+.footer__links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  @include setFont(rem(18px), 25px, 600);
+  letter-spacing: -0.128571px;
+  margin-bottom: rem(88px);
+}
+
+.footer__social-media {
+  width: rem(164px);
+  display: flex;
+  justify-content: space-between;
+  margin-inline: auto;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  text-align: center;
+  z-index: -1;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
