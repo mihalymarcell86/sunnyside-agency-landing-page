@@ -13,6 +13,13 @@
 body {
   background-color: hsl(34deg, 100%, 99%);
   font-family: "Barlow", sans-serif;
+  max-width: 41.6666666667rem;
+  margin: 0 auto;
+}
+@media (min-width: 1000px) {
+  body {
+    max-width: none;
+  }
 }
 
 img,
@@ -37,7 +44,7 @@ a:hover, a:focus {
   padding-top: 1.7777777778rem;
   padding-inline: 1.3333333333rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .header {
     background-image: url("../images/desktop/image-header.jpg");
     padding-top: 1.8888888889rem;
@@ -56,7 +63,7 @@ a:hover, a:focus {
   margin-bottom: 4.8888888889rem;
   color: white;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .header__top {
     margin-bottom: 5.8333333333rem;
   }
@@ -65,7 +72,7 @@ a:hover, a:focus {
 .header__logo {
   width: 6.8888888889rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .header__logo {
     width: 9.4444444444rem;
   }
@@ -74,7 +81,7 @@ a:hover, a:focus {
 .header__navigation {
   display: none;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .header__navigation {
     display: flex;
     width: 25.9444444444rem;
@@ -90,7 +97,7 @@ a:hover, a:focus {
 .header__hamburger {
   cursor: pointer;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .header__hamburger {
     display: none;
   }
@@ -139,7 +146,7 @@ a:hover, a:focus {
   color: hsl(0deg, 0%, 100%);
   margin-bottom: 1.3em;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .header__heading {
     font-size: 3.1111111111rem;
     line-height: 1.2321428571;
@@ -152,30 +159,33 @@ a:hover, a:focus {
   margin-inline: auto;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .grid {
     display: grid;
-    grid-template: repeat(3, 1fr)/1fr 1fr;
+    grid-template: repeat(3, min-content)/repeat(2, min(50vw, 720px));
     grid-template-areas: "transform-text transform-img" "standout-img standout-text" "graphic-design photography";
-    margin-inline: auto;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 .section-white--standout, .section-white--transform {
-  padding: 3.5555555556rem 1.3333333333rem;
+  padding-block: clamp(3.5555555556rem, 0.2026666667 * 100vw + -0.6666666667rem, 7.7777777778rem);
+  padding-inline: clamp(1.3333333333rem, 0.1493333333 * 100vw + -1.7777777778rem, 4.4444444444rem);
   text-align: center;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-white--standout, .section-white--transform {
     text-align: left;
+    padding-block: 0;
+    align-self: center;
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-white--transform {
-    padding-left: 9.1666666667rem;
-    padding-right: 6.1111111111rem;
-    align-self: center;
+    padding-left: clamp(4.4444444444rem, 0.1931818182 * 100vw + -6.2878787879rem, 9.1666666667rem);
+    padding-right: clamp(3.3333333333rem, 0.1136363636 * 100vw + -2.9797979798rem, 6.1111111111rem);
     grid-area: transform-text;
   }
 }
@@ -184,11 +194,10 @@ a:hover, a:focus {
   grid-area: transform-img;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-white--standout {
-    padding-right: 9.1666666667rem;
-    padding-left: 6.1111111111rem;
-    align-self: center;
+    padding-right: clamp(4.4444444444rem, 0.1931818182 * 100vw + -6.2878787879rem, 9.1666666667rem);
+    padding-left: clamp(3.3333333333rem, 0.1136363636 * 100vw + -2.9797979798rem, 6.1111111111rem);
     grid-area: standout-text;
   }
 }
@@ -206,7 +215,7 @@ a:hover, a:focus {
   color: hsl(211deg, 28%, 19%);
   margin-bottom: 0.75em;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-white__heading {
     font-size: 2.2222222222rem;
     line-height: 1.225;
@@ -223,7 +232,7 @@ a:hover, a:focus {
   color: hsl(232deg, 10%, 55%);
   margin-bottom: 1.7777777778em;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-white__paragraph {
     margin-bottom: 2.2222222222em;
   }
@@ -273,23 +282,24 @@ a:hover, a:focus {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
   text-align: center;
-  padding-inline: 1.3333333333rem;
+  padding-inline: clamp(1.3333333333rem, 0.1493333333 * 100vw + -1.7777777778rem, 4.4444444444rem);
   padding-bottom: 3.2777777778rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .grid__section-color {
-    padding-inline: 10.5555555556rem;
     padding-bottom: 3.2777777778rem;
   }
 }
 
 .color--green {
   background-image: url("../images/mobile/image-graphic-design.jpg");
+  background-position: center center;
   color: hsl(167deg, 40%, 24%);
   grid-area: graphic-design;
 }
-@media (min-width: 1440px) {
+@media (min-width: 400px) {
   .color--green {
     background-image: url("../images/desktop/image-graphic-design.jpg");
   }
@@ -297,10 +307,11 @@ a:hover, a:focus {
 
 .color--blue {
   background-image: url("../images/mobile/image-photography.jpg");
+  background-position: center center;
   color: hsl(198deg, 62%, 26%);
   grid-area: photography;
 }
-@media (min-width: 1440px) {
+@media (min-width: 400px) {
   .color--blue {
     background-image: url("../images/desktop/image-photography.jpg");
   }
@@ -314,7 +325,7 @@ a:hover, a:focus {
   letter-spacing: -0.2px;
   margin-bottom: 1em;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-color__heading {
     font-size: 1.5555555556rem;
     line-height: 1.25;
@@ -327,13 +338,21 @@ a:hover, a:focus {
   line-height: 1.6875;
   font-weight: 600;
   letter-spacing: -0.114286px;
+  max-width: 25rem;
+}
+@media (min-width: 1000px) {
+  .section-color__paragraph {
+    max-width: 18.8888888889rem;
+  }
 }
 
 .section-testimonials {
-  padding: 3.5555555556rem 1.3333333333rem 4.7777777778rem;
+  padding-top: 3.5555555556rem;
+  padding-inline: clamp(1.3333333333rem, 0.1493333333 * 100vw + -1.7777777778rem, 4.4444444444rem);
+  padding-bottom: 4.7777777778rem;
   text-align: center;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .section-testimonials {
     padding-block: 8.8888888889rem;
     padding-inline: 0;
@@ -350,7 +369,7 @@ a:hover, a:focus {
   color: hsl(206deg, 4%, 67%);
   margin-bottom: 4em;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .testimonials__heading {
     font-size: 1.1111111111rem;
     line-height: 1.25;
@@ -362,9 +381,10 @@ a:hover, a:focus {
 .testimonials__content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3.5555555556rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1150px) {
   .testimonials__content {
     margin: 0 auto;
     flex-direction: row;
@@ -380,7 +400,7 @@ a:hover, a:focus {
   margin-inline: auto;
   margin-bottom: 1.7777777778rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1150px) {
   .testimonial__avatar {
     margin-bottom: 3.2222222222rem;
   }
@@ -393,8 +413,9 @@ a:hover, a:focus {
   letter-spacing: -0.128571px;
   margin-bottom: 1.7777777778em;
   color: hsl(213deg, 9%, 39%);
+  max-width: 32.7777777778rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1150px) {
   .testimonial__quote {
     width: 19.4444444444rem;
     margin-bottom: 3.8333333333em;
@@ -423,7 +444,7 @@ a:hover, a:focus {
   display: grid;
   grid-template: 1fr 1fr/1fr 1fr;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .gallery {
     grid-template: none/repeat(4, 1fr);
   }
@@ -433,6 +454,7 @@ a:hover, a:focus {
   background-color: hsl(168deg, 44%, 70%);
   color: hsl(168deg, 46%, 31%);
   padding: 3.5555555556rem 2.1666666667rem 4.4444444444rem;
+  position: relative;
 }
 .footer a:any-link {
   color: hsl(168deg, 34%, 41%);
@@ -441,9 +463,12 @@ a:hover, a:focus {
 .footer a:focus {
   color: hsl(0deg, 0%, 100%);
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .footer {
-    padding: 4rem 31.6666666667rem;
+    padding-block: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -463,7 +488,7 @@ a:hover, a:focus {
   letter-spacing: -0.128571px;
   margin-bottom: 4.8888888889rem;
 }
-@media (min-width: 1440px) {
+@media (min-width: 1000px) {
   .footer__links {
     max-width: 16.6666666667rem;
   }
@@ -478,12 +503,11 @@ a:hover, a:focus {
 
 .attribution {
   position: absolute;
-  bottom: 1em;
+  bottom: 2em;
   left: 50%;
   transform: translateX(-50%);
   font-size: 11px;
   text-align: center;
-  z-index: -1;
 }
 
 .attribution a {

@@ -1,14 +1,15 @@
 @use "utilities/global" as *;
 
-//TODO: attribution
-//TODO: SVG titles
-//TODO: reorganize grid__section-white class structure in HTML and CSS
-
 @include setup;
 
 body {
   background-color: hsl(34, 100%, 99%);
   font-family: $font-barlow;
+  max-width: rem(750px);
+  margin: 0 auto;
+  @media (min-width: $breakpoint) {
+    max-width: none;
+  }
 }
 
 img,
@@ -135,28 +136,31 @@ a {
 .grid {
   @media (min-width: $breakpoint) {
     display: grid;
-    grid-template: repeat(3, 1fr) / 1fr 1fr;
+    grid-template: repeat(3, min-content) / repeat(2, min(50vw, 720px));
     grid-template-areas:
       "transform-text transform-img"
       "standout-img standout-text" "graphic-design photography";
-    margin-inline: auto;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 %grid__section-white {
-  padding: rem(64px) rem(24px);
+  padding-block: lerp_clamp(375px, rem(64px), 750px, rem(140px));
+  padding-inline: lerp_clamp(375px, rem(24px), 750px, rem(80px));
   text-align: center;
   @media (min-width: $breakpoint) {
     text-align: left;
+    padding-block: 0;
+    align-self: center;
   }
 }
 
 .section-white--transform {
   @extend %grid__section-white;
   @media (min-width: $breakpoint) {
-    padding-left: rem(165px);
-    padding-right: rem(110px);
-    align-self: center;
+    padding-left: lerp_clamp($breakpoint, rem(80px), 1440px, rem(165px));
+    padding-right: lerp_clamp($breakpoint, rem(60px), 1440px, rem(110px));
     grid-area: transform-text;
   }
 }
@@ -168,9 +172,8 @@ a {
 .section-white--standout {
   @extend %grid__section-white;
   @media (min-width: $breakpoint) {
-    padding-right: rem(165px);
-    padding-left: rem(110px);
-    align-self: center;
+    padding-right: lerp_clamp($breakpoint, rem(80px), 1440px, rem(165px));
+    padding-left: lerp_clamp($breakpoint, rem(60px), 1440px, rem(110px));
     grid-area: standout-text;
   }
 }
@@ -252,29 +255,31 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
   text-align: center;
-  padding-inline: rem(24px);
+  padding-inline: lerp_clamp(375px, rem(24px), 750px, rem(80px));
   padding-bottom: rem(59px);
   @media (min-width: $breakpoint) {
-    padding-inline: rem(190px);
     padding-bottom: rem(59px);
   }
 }
 
 .color--green {
   background-image: url("../images/mobile/image-graphic-design.jpg");
+  background-position: center center;
   color: color(dark-desaturated-cyan);
   grid-area: graphic-design;
-  @media (min-width: $breakpoint) {
+  @media (min-width: 400px) {
     background-image: url("../images/desktop/image-graphic-design.jpg");
   }
 }
 
 .color--blue {
   background-image: url("../images/mobile/image-photography.jpg");
+  background-position: center center;
   color: color(dark-blue);
   grid-area: photography;
-  @media (min-width: $breakpoint) {
+  @media (min-width: 400px) {
     background-image: url("../images/desktop/image-photography.jpg");
   }
 }
@@ -293,10 +298,16 @@ a {
 .section-color__paragraph {
   @include setFont(rem(16px), 27px, 600);
   letter-spacing: -0.114286px;
+  max-width: rem(450px);
+  @media (min-width: $breakpoint) {
+    max-width: rem(340px);
+  }
 }
 
 .section-testimonials {
-  padding: rem(64px) rem(24px) rem(86px);
+  padding-top: rem(64px);
+  padding-inline: lerp_clamp(375px, rem(24px), 750px, rem(80px));
+  padding-bottom: rem(86px);
   text-align: center;
   @media (min-width: $breakpoint) {
     padding-block: rem(160px);
@@ -321,8 +332,9 @@ a {
 .testimonials__content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: rem(64px);
-  @media (min-width: $breakpoint) {
+  @media (min-width: 1150px) {
     margin: 0 auto;
     flex-direction: row;
     gap: rem(30px);
@@ -336,7 +348,7 @@ a {
   border-radius: 100%;
   margin-inline: auto;
   margin-bottom: rem(32px);
-  @media (min-width: $breakpoint) {
+  @media (min-width: 1150px) {
     margin-bottom: rem(58px);
   }
 }
@@ -346,7 +358,8 @@ a {
   letter-spacing: -0.128571px;
   margin-bottom: em(32px, 18px);
   color: color(very-dark-grayish-blue);
-  @media (min-width: $breakpoint) {
+  max-width: rem(590px);
+  @media (min-width: 1150px) {
     width: rem(350px);
     margin-bottom: em(69px, 18px);
   }
@@ -378,6 +391,7 @@ a {
   background-color: hsl(168, 44%, 70%);
   color: hsl(168, 46%, 31%);
   padding: rem(64px) rem(39px) rem(80px);
+  position: relative;
   a:any-link {
     color: color(dark-moderate-cyan);
   }
@@ -386,7 +400,10 @@ a {
     color: color(white);
   }
   @media (min-width: $breakpoint) {
-    padding: rem(72px) rem(570px);
+    padding-block: rem(72px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -417,12 +434,11 @@ a {
 
 .attribution {
   position: absolute;
-  bottom: 1em;
+  bottom: 2em;
   left: 50%;
   transform: translateX(-50%);
   font-size: 11px;
   text-align: center;
-  z-index: -1;
 }
 .attribution a {
   color: hsl(228, 45%, 44%);
