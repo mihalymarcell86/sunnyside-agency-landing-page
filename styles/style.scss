@@ -33,7 +33,7 @@ a {
   width: 100%;
   height: rem(538px);
   padding-top: rem(32px);
-  padding-inline: rem(24px);
+  padding-inline: lerp_clamp(375px, rem(24px), 750px, rem(80px));
   a:any-link {
     color: color(dark-grayish-blue);
   }
@@ -70,7 +70,7 @@ a {
 .header__navigation {
   position: absolute;
   background-color: white;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   gap: rem(32px);
@@ -89,6 +89,7 @@ a {
     border-right: 24px solid white;
   }
   @media (min-width: $breakpoint) {
+    display: flex;
     position: static;
     flex-direction: row;
     gap: 0;
