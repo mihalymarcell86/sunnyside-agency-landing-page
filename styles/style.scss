@@ -34,14 +34,17 @@ a {
   height: rem(538px);
   padding-top: rem(32px);
   padding-inline: rem(24px);
+  a:any-link {
+    color: color(dark-grayish-blue);
+  }
   @media (min-width: $breakpoint) {
     background-image: url("../images/desktop/image-header.jpg");
     padding-top: rem(34px);
     padding-inline: rem(40px);
     height: rem(800px);
-  }
-  a:any-link {
-    color: color(white);
+    a:any-link {
+      color: color(white);
+    }
   }
 }
 
@@ -51,6 +54,7 @@ a {
   align-items: center;
   margin-bottom: rem(88px);
   color: white;
+  position: relative;
   @media (min-width: $breakpoint) {
     margin-bottom: rem(105px);
   }
@@ -64,14 +68,39 @@ a {
 }
 
 .header__navigation {
-  display: none;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(32px);
+  top: calc(100% + rem(50px));
+  right: 0;
+  padding-block: rem(39px);
+  width: 100%;
+  max-width: rem(500px);
+  @include setFont(rem(20px), 25px, 600);
+  &:before {
+    content: "";
+    position: absolute;
+    top: -24px;
+    right: 0;
+    border: 24px solid transparent;
+    border-right: 24px solid white;
+  }
   @media (min-width: $breakpoint) {
-    display: flex;
+    position: static;
+    flex-direction: row;
+    gap: 0;
     width: rem(467px);
+    padding: 0;
     justify-content: space-between;
-    align-items: center;
-    @include setFont(rem(18px), 25px, 600);
+    background-color: transparent;
+    @include setFont(rem(18px), 25px);
     letter-spacing: -0.128571px;
+    &:before {
+      display: none;
+    }
   }
 }
 
@@ -87,29 +116,37 @@ a {
   @include setFont(rem(15px), 25px, 700);
   letter-spacing: -0.107143px;
   text-transform: uppercase;
-  color: color(very-dark-desaturated-blue);
-  background-color: transparent;
   border: 0;
   cursor: pointer;
   width: em(140px, 15px);
   height: em(56px, 15px);
-  position: relative;
+  background-color: transparent;
+  color: color(very-dark-desaturated-blue);
   z-index: 2;
+  position: relative;
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-color: color(white);
+    background-color: color(yellow);
     border-radius: 28px;
     z-index: -1;
   }
   &:hover,
   &:focus {
-    color: color(white);
     outline: none;
-
     &::before {
       opacity: 0.25;
+    }
+  }
+
+  @media (min-width: $breakpoint) {
+    &::before {
+      background-color: color(white);
+    }
+    &:hover,
+    &:focus {
+      color: color(white);
     }
   }
 }
